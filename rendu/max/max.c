@@ -8,6 +8,7 @@ int					max(int *tab, unsigned int len)
 	else
 	{
 		i = 0;
+		n = tab[i];
 		while (i < len)
 		{
 			if (tab[i] > n)

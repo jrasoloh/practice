@@ -1,32 +1,32 @@
 #include <unistd.h>
 
-void		ft_putchar(char c)
+void			ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
 
-void		ft_print_char(char c)
+void			ft_print_char(char c)
 {
-	int		n;
+	int			i;
 
 	if (c > 64 && c < 91)
 	{
-		n = c - 64;
-		while (n > 0)
+		i = 64;
+		while (c - i > 0)
 		{
 			ft_putchar(c);
-			n--;
+			i++;
 		}
 	}
 	else
 	{
 		if (c > 96 && c < 123)
 		{
-			n = c - 96;
-			while (n > 0)
+			i = 96;
+			while (c - i > 0)
 			{
 				ft_putchar(c);
-				n--;
+				i++;
 			}
 		}
 		else
@@ -34,24 +34,27 @@ void		ft_print_char(char c)
 	}
 }
 
-int			main(int argc, char **argv)
+void			ft_print(char *str)
 {
-	int		i;
+	int			i;
 
+	i = 0;
+	while (str[i] != '\0')
+	{
+		ft_print_char(str[i]);
+		i++;
+	}
+	ft_putchar('\n');
+}
+
+int				main(int argc, char **argv)
+{
 	if (argc != 2)
 	{
 		ft_putchar('\n');
 		return (1);
 	}
 	else
-	{
-		i = 0;
-		while (argv[1][i] != '\0')
-		{
-			ft_print_char(argv[1][i]);
-			i++;
-		}
-	}
-	ft_putchar('\n');
+		ft_print(argv[1]);
 	return (0);
 }

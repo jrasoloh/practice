@@ -2,6 +2,6 @@
 
 int			main()
 {
-	write(1, "z\n", 2);	
+	write(1, "zYxWvUtSrQpOnMlKjIhGfEdCbA\n", 27);
 	return (0);
 }
