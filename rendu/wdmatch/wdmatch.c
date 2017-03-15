@@ -1,5 +1,4 @@
 #include <unistd.h>
-#include <stdio.h>
 
 void		ft_putchar(char c)
 {
@@ -8,7 +7,7 @@ void		ft_putchar(char c)
 
 void		ft_putstr(char *str)
 {
-	int		i;
+	int 	i;
 
 	i = 0;
 	while (str[i] != '\0')
@@ -19,18 +18,18 @@ void		ft_putstr(char *str)
 	ft_putchar('\n');
 }
 
-int			ft_wdmatch(char *s1, char *s2)
+int			ft_match(char *s1, char *s2)
 {
 	int		i;
-	int		j;
+	int 	j;
 
 	i = 0;
 	j = 0;
-	while (s2[j] != '\0' && s1[i] != '\0')
+	while (s1[i] != '\0' && s2[j] != '\0')
 	{
 		if (s1[i] == s2[j])
 			i++;
-		if ((s1[i] != '\0') && (s2[j + 1] == '\0'))
+		if ((s2[j + 1] == '\0') && s1[i] != '\0')
 			return (1);
 		j++;
 	}
@@ -45,11 +44,9 @@ int			main(int argc, char **argv)
 		return (1);
 	}
 	else
-	{
-		if (ft_wdmatch(argv[1], argv[2]) == 0)
+		if (ft_match(argv[1], argv[2]) == 0)
 			ft_putstr(argv[1]);
 		else
 			ft_putchar('\n');
-	}
 	return (0);
 }

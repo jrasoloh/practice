@@ -3,17 +3,29 @@
 
 int			ft_pgcd(int a, int b)
 {
-	if (a - b == b)
-		return (b);
-	if (b - a == a)
-		return (a);
-	if ((a == 0 && b != 0) || (a != 0 && b == 0))
+	if ((a - b == 1) 
+		|| (a == 0 && b != 0) 
+		|| (a != 0 && b == 0))
 		return (1);
-	if (a > b)
-		ft_pgcd((a - b), b);
-	else 
-		ft_pgcd((b - a), a);
+	else
+	{
+		if (a - b == b)
+			return (b);
+		else
+		{
+			if (b - a == a)
+				return (a);
+			else
+			{
+				if (a > b)
+					return (ft_pgcd((a - b), b));
+				else 
+					return (ft_pgcd((b - a), a));
+			}
+		}
+	}
 }
+
 
 int			main(int argc, char **argv)
 {
