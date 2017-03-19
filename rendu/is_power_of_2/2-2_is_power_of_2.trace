@@ -1,0 +1,68 @@
+= Host-specific information ====================================================
+$> hostname; uname -msr
+e2r12p10.42.fr
+Darwin 15.6.0 x86_64
+$> date
+Fri Mar 17 21:49:16 CET 2017
+$> gcc --version
+Configured with: --prefix=/Applications/Xcode.app/Contents/Developer/usr --with-gxx-include-dir=/usr/include/c++/4.2.1
+Apple LLVM version 8.0.0 (clang-800.0.42.1)
+Target: x86_64-apple-darwin15.6.0
+Thread model: posix
+InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+$> clang --version
+Apple LLVM version 8.0.0 (clang-800.0.42.1)
+Target: x86_64-apple-darwin15.6.0
+Thread model: posix
+InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+
+= User files collection ========================================================
+Collecting user files from Vogsphere
+Repository URL: auto-exam/2017/c-exam-beginner/practice-exam_20170317/jrasoloh
+
+= Git history ==================================================================
+$> git -C /var/folders/rc/bpv31f517070ktgvcgt0sg8c0000gr/T/tmp4sEq8f/user log --pretty='%H - %an, %ad : %s'
+058aba3c12554d1594744dc7fec2ef99c117daa1 - Jossy RASOLOHARIJAONA, Fri Mar 17 21:49:03 2017 +0100 : power of 2
+e283cf80aa45dbc6e28e5604676e977cfb30b9d9 - Jossy RASOLOHARIJAONA, Fri Mar 17 21:37:18 2017 +0100 : print bits
+ba62d13d41e0b843987b6c1603878dd6b0112c17 - Jossy RASOLOHARIJAONA, Fri Mar 17 20:35:52 2017 +0100 : exo02
+fa351dc211dabf428091cdc45ef1a2eae37219c5 - Jossy RASOLOHARIJAONA, Fri Mar 17 20:20:27 2017 +0100 : exo01
+ 
+= Collected files ==========================================
+$> ls -lAR /var/folders/rc/bpv31f517070ktgvcgt0sg8c0000gr/T/tmp4sEq8f/user
+total 8
+-rw-r--r--  1 deepthought  deepthought  1001 Mar 17 21:49 __GIT_HISTORY
+drwxr-xr-x  3 deepthought  deepthought   102 Mar 17 21:49 aff_a
+drwxr-xr-x  3 deepthought  deepthought   102 Mar 17 21:49 is_power_of_2
+drwxr-xr-x  3 deepthought  deepthought   102 Mar 17 21:49 print_bits
+drwxr-xr-x  3 deepthought  deepthought   102 Mar 17 21:49 ulstr
+
+/var/folders/rc/bpv31f517070ktgvcgt0sg8c0000gr/T/tmp4sEq8f/user/aff_a:
+total 8
+-rw-r--r--  1 deepthought  deepthought  294 Mar 17 21:49 aff_a.c
+
+/var/folders/rc/bpv31f517070ktgvcgt0sg8c0000gr/T/tmp4sEq8f/user/is_power_of_2:
+total 8
+-rw-r--r--  1 deepthought  deepthought  168 Mar 17 21:49 is_power_of_2.c
+
+/var/folders/rc/bpv31f517070ktgvcgt0sg8c0000gr/T/tmp4sEq8f/user/print_bits:
+total 8
+-rw-r--r--  1 deepthought  deepthought  426 Mar 17 21:49 print_bits.c
+
+/var/folders/rc/bpv31f517070ktgvcgt0sg8c0000gr/T/tmp4sEq8f/user/ulstr:
+total 8
+-rw-r--r--  1 deepthought  deepthought  489 Mar 17 21:49 ulstr.c
+ 
+= is_power_of_2 ================================================================
+$> clang -Wextra -Wall -Werror is_power_of_2.c main.c -o user_exe 
+is_power_of_2.c:10:12: error: comparison of integers of different signs: 'int' and 'unsigned int' [-Werror,-Wsign-compare]
+                while (i < n)
+                       ~ ^ ~
+is_power_of_2.c:12:9: error: comparison of integers of different signs: 'int' and 'unsigned int' [-Werror,-Wsign-compare]
+                if (i != n)
+                    ~ ^  ~
+2 errors generated.
+
+Could not compile 'user_exe'
+Grade: 0
+
+= Final grade: 0 ===============================================================
