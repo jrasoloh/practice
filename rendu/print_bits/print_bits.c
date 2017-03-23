@@ -19,20 +19,20 @@ void		ft_print_tab(char *str)
 
 void		print_bits(unsigned char octet)
 {
-	int		n;
+	int		pow;
 	int		i;
 	char	str[9];
 
-	n = (int) octet;
-	i = 7;
-	while (n > 0 && i >= 0)
+	pow = 1;
+	i = 0;
+	while (pow != 256)
 	{
-		if (n % 2 == 1)
+		if (octet & pow)
 			str[i] = 49;
 		else
 			str[i] = 48;
-		n = n / 2;
-		i--;
+		pow *= 2;
+		i++;
 	}
 	str[8] = '\0';
 	ft_print_tab(str);
