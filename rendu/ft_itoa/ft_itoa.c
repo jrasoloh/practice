@@ -1,62 +1,55 @@
 #include <stdlib.h>
 
-char		*cas()
+int			ft_nblen(int n)
 {
-	char	*str = "-2147483648";
+	int		i;
 
-	return (str);
-}
-
-int			ft_len(int n)
-{
-	int		len;
-	
-	len = 1;
-	while (n / 10 > 0)
+	i = 1;
+	while (n / 10 != 0)
 	{
-		len++;
+		i++;
 		n = n / 10;
 	}
-	return (len);
+	return (i);
 }
 
 char		*ft_itoa(int nbr)
 {
-	char	*str;
-	int		len;
+	char	*res;
 	int		i;
-	int		copy;
 	int		sign;
+	int		copy;
+	int		len;
 
-	copy = nbr;
-	sign = 1;
-	len = 0;
 	if (nbr == -2147483648)
+		return ("\n");
+	else
 	{
-		str = cas();
-		return (str);
-	}
-	if (nbr < 0)
-	{
-		len = 1;
-		sign = -1;
-		copy = -1 * nbr;
-	}
-	len = len + ft_len(copy);
-	str = (char *)malloc(sizeof(char) * (len + 1));
-	str[len] = '\0';
-	i = 0;
-	if (sign == -1)
-	{
-		str[i] = '-';
-		i++;
-	}
-	len--;
-	while (len >= i)
-	{
-		str[len] = (copy % 10) + 48;
-		copy = copy / 10;
+		copy = nbr;
+		sign = 1;
+		len = 0;
+		if (copy < 0)
+		{
+			sign = -1;
+			len++;
+			copy = -1 * copy;
+		}
+		len = ft_nblen(copy) + len;
+		res = (char *)malloc(sizeof(char) * (len + 1));
+		i = 0;
+		res[len] = '\0';
 		len--;
+		if (sign == -1)
+		{
+			res[i] = '-';
+			i++;
+		}
+		while (i <= len)
+		{
+			res[len] = copy % 10 + 48;
+			len--;
+			copy = copy / 10;
+		}
 	}
-	return (str);
+	return (res);
 }
