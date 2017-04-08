@@ -1,16 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void				ft_compare(int *a, int *b)
+void				ft_swap(int *a, int *b)
 {
 	int				tmp;
 
-	if (a > b)
-	{
 		tmp = *a;
 		*a = *b;
 		*b = tmp;
-	}
 }
 
 void				ft_print_tab(int *tab, unsigned int size)
@@ -44,23 +41,23 @@ void				sort_int_tab(int *tab, unsigned int size)
 {
 	unsigned int	i;
 	unsigned int	j;
+	unsigned int	min;
 
 	i = 0;
 	j = 1;
-	while (ft_sorted(tab, size) == 1)
+	min = 0;
+	while (j < size && ft_sorted(tab, size) == 1)
 	{
-		while (i < size)
+		while (j < size)
 		{
-			ft_print_tab(tab, size);
-			while (j < size)
-			{
-				ft_compare(&tab[i], &tab[j]);
-				j++;
-			}
-			i++;
-			j = 0;
+			if (tab[j] < tab[min])
+				min = j;
+			j++;
 		}
-		j = 1;
+		ft_swap(&tab[i], &tab[min]);
+		i++;
+		min = i;
+		j = i + 1;
 	}
 }
 
@@ -74,7 +71,7 @@ int					main()
 	tab[0] = 42;
 	tab[1] = 3;
 	tab[2] = 4;
-	tab[3] = 12;
+	tab[3] = 5;
 	tab[4] = 10;
 	tab[5] = 5;
 	tab[6] = 31;
