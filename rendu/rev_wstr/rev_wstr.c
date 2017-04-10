@@ -1,40 +1,9 @@
-#include <stdlib.h>
 #include <unistd.h>
+#include <stdlib.h>
 
 void		ft_putchar(char c)
 {
 	write(1, &c, 1);
-}
-
-int			ft_strlen(char *str)
-{
-	int		i;
-
-	i = 0;
-	while (str[i] != '\0' && str[i] != ' ' && str[i] != '\t')
-		i++;
-	return (i);
-}
-
-int			ft_countwords(char *str)
-{
-	int		words;
-	int		i;
-
-	i = 0;
-	words = 0;
-	while (str[i])
-	{
-		if (str[i] != ' ' && str[i] != '\t' && str[i] != '\0')
-		{
-			words++;
-			while (str[i] != ' ' && str[i] != '\t' && str[i] != '\0')
-				i++;
-		}
-		else
-			i++;
-	}
-	return (words);
 }
 
 void		ft_putstr(char *str)
@@ -49,21 +18,58 @@ void		ft_putstr(char *str)
 	}
 }
 
-char		*ft_makeword(char *str, int *i)
+int			ft_isspace(char c)
+{
+	if (c == ' ' || c == '\t' || c == '\n' || c == '\0')
+		return (0);
+	return (1);
+}
+
+int			ft_strlen(char *str)
+{
+	int		i;
+
+	i = 0;
+	while (ft_isspace(str[i]) == 1)
+		i++;
+	return (i);
+}
+
+int			ft_countwords(char *str)
+{
+	int		i;
+	int		words;
+
+	i = 0;
+	words = 0;
+	while (str[i])
+	{
+		if (ft_isspace(str[i]) == 1)
+		{
+			words++;
+			while (ft_isspace(str[i]) == 1 && str[i])
+				i++;
+		}
+		else
+			i++;
+	}
+	return (words);
+}
+
+char		*ft_makeword(char *str, int *j)
 {
 	char	*res;
-	int		k;
+	int		i;
 
-	k = 0;
-	res = NULL;
-	res = (char *)malloc(sizeof(char) * (ft_strlen(&str[*i]) + 1));
-	while (str[*i] != ' ' && str[*i] != '\0' && str[*i] != '\t')
+	res = (char *)malloc(sizeof(char) * (ft_strlen(&str[*j]) + 1));
+	i = 0;
+	while (ft_isspace(str[*j]) == 1)
 	{
-		res[k] = str[*i];
-		*i = *i + 1;
-		k++;
+		res[i] = str[*j];
+		*j = *j + 1;
+		i++;
 	}
-	res[k] = '\0';
+	res[i] = '\0';
 	return (res);
 }
 
@@ -73,39 +79,39 @@ char		**ft_split(char *str)
 	int		i;
 	int		j;
 
-	res = NULL;
 	res = (char **)malloc(sizeof(char *) * (ft_countwords(str) + 1));
 	i = 0;
 	j = 0;
-	while (j < ft_countwords(str))
+	while (i < ft_countwords(str))
 	{
-		if (str[i] != ' ' && str[i] != '\0' && str[i] != '\t')
-		{
-			res[j] = ft_makeword(str, &i);
-			j++;
-		}
+		if (ft_isspace(str[j]) == 1)
+			while (ft_isspace(str[j]) == 1 && str[j])
+			{
+				res[i] = ft_makeword(str, &j);
+				i++;
+			}
 		else
-			i++;
+			j++;
 	}
-	res[j] = NULL;
+	res[i] = NULL;
 	return (res);
 }
 
-
-void		ft_revwstr(char *str)
+void		rev_wstr(char **str)
 {
 	int		i;
-	char	**res;
 
-	res = ft_split(str);
-	i = ft_countwords(str) - 1;
-	while (i >= 1)
+	i = 0;
+	while (str[i] != NULL)
+		i++;
+	i--;
+	while (i > 0)
 	{
-		ft_putstr(res[i]);
+		ft_putstr(str[i]);
 		ft_putchar(' ');
 		i--;
 	}
-	ft_putstr(res[i]);
+	ft_putstr(str[0]);
 	ft_putchar('\n');
 }
 
@@ -117,6 +123,6 @@ int			main(int argc, char **argv)
 		return (1);
 	}
 	else
-		ft_revwstr(argv[1]);
+		rev_wstr(ft_split(argv[1]));
 	return (0);
 }
