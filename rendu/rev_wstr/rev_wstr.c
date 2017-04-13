@@ -97,21 +97,20 @@ char		**ft_split(char *str)
 	return (res);
 }
 
-void		rev_wstr(char **str)
+void		rev_wstr(char *str)
 {
 	int		i;
+	char	**res;
 
-	i = 0;
-	while (str[i] != NULL)
-		i++;
-	i--;
+	res = ft_split(str);
+	i = ft_countwords(str) - 1;
 	while (i > 0)
 	{
-		ft_putstr(str[i]);
+		ft_putstr(res[i]);
 		ft_putchar(' ');
 		i--;
 	}
-	ft_putstr(str[0]);
+	ft_putstr(res[0]);
 	ft_putchar('\n');
 }
 
@@ -123,6 +122,6 @@ int			main(int argc, char **argv)
 		return (1);
 	}
 	else
-		rev_wstr(ft_split(argv[1]));
+		rev_wstr(argv[1]);
 	return (0);
 }
